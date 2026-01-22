@@ -3,10 +3,14 @@ import sqlite3
 
 company_bp = Blueprint('company', __name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "db.sqlite3"))
+
 def get_db():
-    conn = sqlite3.connect('db.sqlite3')
+    conn = sqlite3.connect(DB_PATH) #('db.sqlite3')
     conn.row_factory = sqlite3.Row
     return conn
+
 
 @company_bp.route('/companies', methods=['POST'])
 def add_company():
