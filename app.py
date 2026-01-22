@@ -4,6 +4,7 @@ from flask_cors import CORS
 from auth import auth_bp
 from company import company_bp
 from assessment import assessment_bp
+from models import init_db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
@@ -13,7 +14,7 @@ CORS(app)
 app.register_blueprint(auth_bp)
 app.register_blueprint(company_bp)
 app.register_blueprint(assessment_bp)
-
+init_db()
 #if __name__ == '__main__':
 #    app.run(debug=True)
 if __name__ == "__main__":
